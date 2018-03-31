@@ -4,6 +4,8 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 # import tensorflow as tf
+import sys
+sys.path.append("/home/shayan/gans_tf/StackGAN")
 import numpy as np
 import os
 import pickle

@@ -192,15 +192,15 @@ class CondGANTrainer(object):
         all_sum = {'g': [], 'd': [], 'hist': []}
         for k, v in self.log_vars:
             if k.startswith('g'):
-                all_sum['g'].append(tf.summary.scalar(k, v))
+                all_sum['g'].append(tf.scalar_summary(k, v))
             elif k.startswith('d'):
-                all_sum['d'].append(tf.summary.scalar(k, v))
+                all_sum['d'].append(tf.scalar_summary(k, v))
             elif k.startswith('hist'):
-                all_sum['hist'].append(tf.summary.histogram(k, v))
+                all_sum['hist'].append(tf.histogram_summary(k, v))
 
-        self.g_sum = tf.summary.merge(all_sum['g'])
-        self.d_sum = tf.summary.merge(all_sum['d'])
-        self.hist_sum = tf.summary.merge(all_sum['hist'])
+        self.g_sum = tf.merge_summary(all_sum['g'])
+        self.d_sum = tf.merge_summary(all_sum['d'])
+        self.hist_sum = tf.merge_summary(all_sum['hist'])
 
     def visualize_one_superimage(self, img_var, images, rows, filename):
         stacked_img = []
@@ -212,7 +212,7 @@ class CondGANTrainer(object):
             # each rows is 1realimage +10_fakeimage
             stacked_img.append(tf.concat(row_img, 1))
         imgs = tf.expand_dims(tf.concat(stacked_img, 0), 0)
-        current_img_summary = tf.summary.image(filename, imgs)
+        current_img_summary = tf.image_summary(filename, imgs)
         return current_img_summary, imgs
 
     def visualization(self, n):
@@ -225,7 +225,7 @@ class CondGANTrainer(object):
                                           self.images[n * n:2 * n * n],
                                           n, "test")
         self.superimages = tf.concat([superimage_train, superimage_test], 0)
-        self.image_summary = tf.summary.merge([fake_sum_train, fake_sum_test])
+        self.image_summary = tf.merge_summary([fake_sum_train, fake_sum_test])
 
     def preprocess(self, x, n):
         # make sure every row with n column have the same embeddings
@@ -308,7 +308,7 @@ class CondGANTrainer(object):
                                        keep_checkpoint_every_n_hours=2)
 
                 # summary_op = tf.merge_all_summaries()
-                summary_writer = tf.summary.FileWriter(self.log_dir,
+                summary_writer = tf.train.SummaryWriter(self.log_dir,
                                                         sess.graph)
 
                 keys = ["d_loss", "g_loss"]

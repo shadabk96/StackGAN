@@ -6,6 +6,8 @@ import dateutil.tz
 import datetime
 import argparse
 import pprint
+import sys
+sys.path.append("/home/shayan/gans_tf/StackGAN")
 
 from misc.datasets import TextDataset
 from stageI.model import CondGAN

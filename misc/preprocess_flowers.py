@@ -3,6 +3,9 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
+import sys
+sys.path.append("/home/shayan/gans_tf/StackGAN")
+
 # import tensorflow as tf
 import numpy as np
 import os
@@ -14,7 +17,6 @@ import scipy.misc
 
 # TODO: 1. current label is temporary, need to change according to real label
 #       2. Current, only split the data into train, need to handel train, test
-
 LR_HR_RETIO = 4
 IMSIZE = 256
 LOAD_SIZE = int(IMSIZE * 76 / 64)
