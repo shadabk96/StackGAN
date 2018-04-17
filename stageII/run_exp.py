@@ -8,6 +8,9 @@ import datetime
 import argparse
 import pprint
 
+import sys
+sys.path.append('/home/shayan/gans_tf/StackGAN')
+
 from misc.datasets import TextDataset
 from stageII.model import CondGAN
 from stageII.trainer import CondGANTrainer

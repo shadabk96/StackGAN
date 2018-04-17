@@ -1,6 +1,7 @@
 from __future__ import division
 from __future__ import print_function
-
+import sys
+sys.path.append("/home/shayan/gans_tf/StackGAN")
 import prettytensor as pt
 import tensorflow as tf
 import numpy as np

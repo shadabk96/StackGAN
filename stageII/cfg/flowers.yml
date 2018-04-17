@@ -7,7 +7,7 @@ Z_DIM: 100
 
 TRAIN:
     FLAG: True
-    PRETRAINED_MODEL: './ckt_logs/flowers/stageI/model_64000.ckpt'
+    PRETRAINED_MODEL: './ckt_logs/flowers/stageII_2018_04_03_05_18_10/model_114000.ckpt'
     PRETRAINED_EPOCH: 600
     BATCH_SIZE: 64
     NUM_COPY: 4
